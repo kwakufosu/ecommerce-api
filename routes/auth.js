@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require('../models/User');
 const CryptoJS = require('crypto-js');
 const jwt = require('jsonwebtoken');
+
 //REGISTER
 router.post('/register', async (req, res) => {
   const newUser = new User({
@@ -38,7 +39,7 @@ router.post('/login', async (req, res) => {
     );
 
     const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
-
+    //console.log(originalPassword);
     if (originalPassword !== req.body.password) {
       return res.status(401).json('Wrong credentials!');
     }
